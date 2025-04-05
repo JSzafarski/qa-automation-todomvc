@@ -5,11 +5,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Define a fixture to initialize and quit the WebDriver (Chrome in headless mode)
+# initialize and quit the WebDriver
 @pytest.fixture(scope="module")
 def driver():
     options = Options()
-    options.add_argument("--headless")  # Run browser in the background
+    options.add_argument("--headless")  # Run browser in the background (i.e headless)
     driver = webdriver.Chrome(options=options)
     yield driver  # Provide the driver to the test function
     driver.quit()  # Ensure the WebDriver is properly closed after tests are done
