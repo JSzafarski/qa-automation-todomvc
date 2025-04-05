@@ -16,18 +16,18 @@ def driver():
 
 # Test to add a new item
 def test_add_todo(driver):
-    # Open the TodoMVC React app
-    driver.get("https://todomvc.com/examples/react/dist/#/")  # URL of the demo app
+    # Open the TodoMVC React app - URL of the demo app I am targeting to test
+    driver.get("https://todomvc.com/examples/react/dist/#/")
 
-    # Wait for the input box to be present before interacting with it
+    # Wait for the input box to be present before interacting with it (can prevent a false negative fail)
     input_box = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "new-todo"))
     )
 
-    input_box.send_keys("Buy milk\n")
+    input_box.send_keys("get hired\n") #automatically input the data by simulating key presses
 
     items = driver.find_elements(By.CSS_SELECTOR, ".todo-list li")
 
-    # Assert that at least one item exists and it matches the expected text
-    assert len(items) > 0 and items[0].text == "Buy milk"
+    # Assert that at least one item exists and it matches the initial input
+    assert len(items) > 0 and items[0].text == "get hired"
 
